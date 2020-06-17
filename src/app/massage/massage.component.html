@@ -1,0 +1,93 @@
+<div class="form-group">
+  <label>nadawca:</label>
+  <select [(ngModel)]="newMassage.sender" class="form-control">
+    <option [ngValue]="u" *ngFor="let u of users">{{u.login}}</option>
+  </select>
+</div>
+<div class="form-group">
+  <label>odbiorca:</label>
+  <select [(ngModel)]="newMassage.recipient" class="form-control">
+    <option [ngValue]="u" *ngFor="let u of users">{{u.login}}</option>
+  </select>
+</div>
+<div class="form-group">
+  <label>do ogłoszenia:</label>
+  <select [(ngModel)]="newMassage.advertisement" class="form-control">
+    <option [ngValue]="a" *ngFor="let a of advertisements">{{a.title}}</option>
+  </select>
+</div>
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>data</mat-label><br/>
+    <input [(ngModel)]="newMassage.date" [value]="" matInput [matDatepicker]="myPicker"  placeholder="date">
+    <mat-datepicker-toggle  matSuffix [for]="myPicker"></mat-datepicker-toggle>
+    <mat-datepicker #myPicker></mat-datepicker>
+  </mat-form-field>
+</div>
+<div class="form-group">
+  <label>treść:</label>
+  <textarea [(ngModel)]="newMassage.contents" class="form-control"></textarea>
+</div>
+<button (click)="addMassage()" class="btn btn-outline-success">Dodaj</button>
+
+<div class="table-responsive mt-4">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">id</th>
+      <th scope="col">nadawca</th>
+      <th scope="col">odbiorca</th>
+      <th scope="col">ogłoszenie</th>
+      <th scope="col">data</th>
+      <th scope="col">treść</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let massage of massages; index as i">
+      <th scope="row">{{i + 1}}</th>
+      <th scope="row">{{massage.id}}</th>
+      <td>
+        <div class="form-group">
+          <select [(ngModel)]="massage.sender" [disabled]="disabledEdit[i]" class="form-control">
+            <option [ngValue]="u" *ngFor="let u of users" [selected]="massage.sender.id === u.id" >{{u.login}}</option>
+          </select>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <select [(ngModel)]="massage.recipient" [disabled]="disabledEdit[i]" class="form-control">
+            <option [ngValue]="u" *ngFor="let u of users" [selected]="massage.recipient.id === u.id" >{{u.login}}</option>
+          </select>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <select [(ngModel)]="massage.advertisement" [disabled]="disabledEdit[i]" class="form-control">
+            <option [ngValue]="a" *ngFor="let a of advertisements" [selected]="massage.advertisement.id === a.id">{{a.title}}</option>
+          </select>
+        </div>
+      </td>
+      <td>
+        <mat-form-field>
+          <input [(ngModel)]="massage.date" [value]="massage.date" matInput [matDatepicker]="myPicker"  placeholder="date">
+          <mat-datepicker-toggle  matSuffix [for]="myPicker"></mat-datepicker-toggle>
+          <mat-datepicker #myPicker></mat-datepicker>
+        </mat-form-field>
+      </td>
+      <td>
+        <textarea [(ngModel)]="massage.contents" [disabled]="disabledEdit[i]" class="form-control"></textarea>
+      </td>
+      <td>
+        <button (click)="makeEnabledEdit(i)" *ngIf="disabledEdit[i]" class="btn btn-outline-warning">edit</button>
+        <button (click)="save(i)" *ngIf="!disabledEdit[i]" class="btn btn-outline-secondary">save</button>
+      </td>
+      <td>
+        <button (click)="delete(i)" [disabled]="!disabledEdit[i]" class="btn btn-outline-danger">usuń</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
