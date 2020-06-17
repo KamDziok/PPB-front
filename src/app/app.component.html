@@ -5,7 +5,7 @@
   <div class="collapse navbar-collapse" [routerLinkActive]="['active']" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item" [routerLinkActive]="['active']">
-        <a class="col-1 navbar-brand" [routerLink]="['/admin']">Ogłoszenia.pl</a>
+        <a class="col-1 navbar-brand" [routerLink]="['user']">Ogłoszenia.pl</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" [routerLink]="['user']">Użytkownicy</a>
@@ -22,14 +22,6 @@
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" [routerLink]="['massage']">Wiadomości</a>
       </li>
-    </ul>
-    <ul class="navbar-nav mr-0 mt-2 mt-lg-0">
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" [routerLink]="['/admin']">Witaj {{currentUser.firstName}} {{currentUser.lastName}}!</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" (click)="logOut()">Wyloguj</a>-->
-<!--      </li>-->
     </ul>
   </div>
 </nav>
