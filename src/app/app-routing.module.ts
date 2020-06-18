@@ -8,7 +8,7 @@ import {MassageComponent} from "./massage/massage.component";
 
 
 const routes: Routes = [
-  { path: 'user', component: UserComponent},
+  { path: '', component: UserComponent},
   { path: 'advertisement', component: AdvertisementComponent},
   { path: 'categories', component: CategoriesComponent},
   { path: 'comment', component: CommentComponent},
